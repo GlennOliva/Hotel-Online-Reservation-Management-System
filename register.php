@@ -42,8 +42,10 @@ include('connection/dbcon.php');
                 
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example28">Password</label>
-                        <input type="password" id="form2Example28" class="form-control form-control-lg" name="password"/>
+                        <input type="password" id="password" class="form-control form-control-lg" name="password"/>
                     </div>
+
+                    <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters</div>
                 
                     <div class="pt-1 mb-3 text-center">
                         <button class="btn btn-info btn-lg " style="width: 300px; margin: 0 auto;" type="submit" name="register" >REGISTER</button>
@@ -63,6 +65,27 @@ include('connection/dbcon.php');
       </section>
 </body>
 </html>
+
+<script>
+  function validatePassword() {
+    var passwordInput = document.getElementById("password");
+    var passwordError = document.getElementById("password-error");
+
+    if (passwordInput.value.length < 4 || passwordInput.value.length > 25) {
+        if (passwordInput.value.length < 8) {
+            passwordError.textContent = "Password must be at least 4 characters to 8 characters";
+        } 
+        passwordError.style.display = "block";
+        return false; // Password length is invalid
+    } else {
+        passwordError.style.display = "none";
+        return true; // Password length is valid
+    }
+}
+
+// Add event listener to the password input field to trigger validation
+document.getElementById("password").addEventListener("keyup", validatePassword);
+</script>
 
 
 <?php

@@ -30,12 +30,14 @@ session_start();
                 <input type="text" name="username" placeholder="Username">
             </div>
             <div class="input-container">
-                <i class="material-icons-sharp">lock</i>
-                <input type="password" name="password" id="password" placeholder="Password">
-                <span class="toggle-password" onclick="togglePasswordVisibility()" >
-                <i class="material-icons-sharp" id="password-icon">visibility</i>
-                </span>
-            </div>
+    <i class="material-icons-sharp">lock</i>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <span class="toggle-password" onclick="togglePasswordVisibility()">
+        <i class="material-icons-sharp" id="password-icon">visibility</i>
+    </span>
+</div>
+<div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters</div>
+
             <input type="submit" name="login-submit" value="Login" class="submit-button">
         </form>
     </div>
@@ -58,6 +60,28 @@ session_start();
             passwordIcon.textContent = "visibility";
         }
     }
+
+    function validatePassword() {
+    var passwordInput = document.getElementById("password");
+    var passwordError = document.getElementById("password-error");
+
+    if (passwordInput.value.length < 4 || passwordInput.value.length > 25) {
+        if (passwordInput.value.length < 8) {
+            passwordError.textContent = "Password must be at least 4 characters to 8 characters";
+        } 
+        passwordError.style.display = "block";
+        return false; // Password length is invalid
+    } else {
+        passwordError.style.display = "none";
+        return true; // Password length is valid
+    }
+}
+
+// Add event listener to the password input field to trigger validation
+document.getElementById("password").addEventListener("keyup", validatePassword);
+
+
+
 </script>
 
 

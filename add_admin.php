@@ -30,8 +30,10 @@
 
             <div class="mb-3">
                 <label for="adminPasword" class="form-label">Admin Password</label>
-                <input type="password" class="form-control" id="adminPassword" name="adminPassword">
+                <input type="password" class="form-control" id="password" name="adminPassword">
             </div>
+
+            <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters</div>
 
 
             <div class="mb-3">
@@ -49,6 +51,27 @@
     </div>
 </div>
 
+<script>
+      function validatePassword() {
+    var passwordInput = document.getElementById("password");
+    var passwordError = document.getElementById("password-error");
+
+    if (passwordInput.value.length < 4 || passwordInput.value.length > 25) {
+        if (passwordInput.value.length < 8) {
+            passwordError.textContent = "Password must be at least 4 characters to 8 characters";
+        } 
+        passwordError.style.display = "block";
+        return false; // Password length is invalid
+    } else {
+        passwordError.style.display = "none";
+        return true; // Password length is valid
+    }
+}
+
+// Add event listener to the password input field to trigger validation
+document.getElementById("password").addEventListener("keyup", validatePassword);
+
+</script>
 <?php
 if(isset($_POST['add_admin']))
 {

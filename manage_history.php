@@ -18,8 +18,11 @@
         <thead>
             <tr class="table-dark">
                 <th scope="col">Id</th>
-                <th scope="col">User Id</th>
-                <th scope="col">Room Id</th>
+                <th scope="col">User Full_Name</th>
+                <th scope="col">User Address</th>
+                <th scope="col">Room Name</th>
+                <th scope="col">Room Price</th>
+                <th scope="col">Room Total_Price</th>
                 <th scope="col">Check In</th>
                 <th scope="col">Check Out</th>
                 <th scope="col">Status</th>
@@ -37,7 +40,9 @@
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
-            $user_id = $row['user_id'];
+            $user_id = $row['full_name'];
+            $address = $row['address'];
+            $room_price = $row['room_price'];
             $room_id = $row['room_id'];
             $check_in = $row['check_in'];
             $check_out = $row['check_out'];
@@ -50,7 +55,10 @@
             echo "<tr>
                     <td>$ids</td>
                     <td>$user_id</td>
-                    <td>$room_id</td>
+                    <td>$address</td>
+                    <td>$room_name</td>
+                    <td>$room_price</td>
+                    <td>$total_price</td>
                     <td>$check_in</td>
                     <td>$check_out</td>
                     <td>$status</td>
