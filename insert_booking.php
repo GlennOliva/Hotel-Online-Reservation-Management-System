@@ -10,10 +10,12 @@ $fullName = $_POST['full_name'];
 $address = $_POST['address'];
 $user_id = $_POST['user_id'];
 $room_id = $_POST['room_id'];
+$children = $_POST['children'];
+$adults = $_POST['adults'];
 
 // Insert data into the tbl_book table
-$sqlInsert = "INSERT INTO tbl_book (user_id, room_id, full_name, address, check_in, check_out, room_name, room_price, total_price, payment_method, created_at) 
-VALUES ('$user_id', '$room_id', '$fullName', '$address', '$checkInDate', '$checkOutDate', '$roomName', '$roomPrice', '$totalPrice', 'PayPal', NOW())";
+$sqlInsert = "INSERT INTO tbl_book (user_id, room_id, full_name, address, check_in, check_out, room_name, room_price, total_price, payment_method, children , adults,  created_at) 
+VALUES ('$user_id', '$room_id', '$fullName', '$address', '$checkInDate', '$checkOutDate', '$roomName', '$roomPrice', '$totalPrice', 'PayPal', '$children' , '$adults', NOW())";
 
 if (mysqli_query($conn, $sqlInsert)) {
     echo 'Data inserted successfully.';

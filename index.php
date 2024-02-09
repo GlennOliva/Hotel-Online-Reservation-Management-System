@@ -66,7 +66,7 @@ if(isset($_SESSION['admin_id'])) {
           <?php
 
     $admin_id = $_SESSION['admin_id'];
-    $sql = "SELECT SUM(total_price) as total_sales FROM tbl_book WHERE status = 'Booked'";
+    $sql = "SELECT SUM(total_price) as total_sales FROM tbl_book WHERE status = 'Approved'";
     
     // Assuming you are using mysqli for database operations
     $result = mysqli_query($conn, $sql);
@@ -244,7 +244,7 @@ $sql = "SELECT
         FROM 
             tbl_book
         WHERE 
-                 status = 'Booked'
+                 status = 'Approved'
         GROUP BY 
             MONTH(created_at)
         ORDER BY 

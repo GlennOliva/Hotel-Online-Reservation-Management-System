@@ -43,21 +43,27 @@ if (isset($_SESSION['user_id'])) {
             $status = $row['status'];
             $created_at = $row['created_at'];
 
-            // Display each row in the table
-            echo "<tr>
-                    <td>$ids</td>
-                    <td>$user_id</td>
-                    <td>$room_id</td>
-                    <td>$check_in</td>
-                    <td>$check_out</td>
-                    <td>$room_name</td>
-                    <td>$total_price</td>
-                    <td>$status</td>
-                    <td>$created_at</td>
-                    <td>
-                                <button class='cancel-button' data-booking-id='$id'>Cancel Book</button>
-                            </td>
-                </tr>";
+            ?>
+
+            <tr>
+            <td><?php echo $ids ?></td>
+            <td><?php echo $user_id ?></td>
+            <td><?php echo$room_id?></td>
+            <td><?php echo$check_in?></td>
+            <td><?php echo$check_out?></td>
+            <td><?php echo$room_name?></td>
+            <td><?php echo$total_price?></td>
+            <td><?php echo$status?></td>
+            <td><?php echo$created_at?></td>
+            <td>
+                <button class='cancel-button' style="background-color: red; color: white; padding: 12px;" data-booking-id='$id'>Cancel Book</button>
+                <a class='cancel-button' style="background-color: yellow; color: black; padding: 12px;" href="customer_review.php?id=<?php echo $room_id; ?>">Room Review</a>
+            </td>
+        </tr>
+
+        <?php
+    
+
 
                 $ids++;
         }

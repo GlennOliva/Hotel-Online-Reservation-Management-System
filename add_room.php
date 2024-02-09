@@ -66,6 +66,14 @@ if(!isset($_SESSION['admin_id']))
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="roomFeature" class="form-label">Room Feature</label>
+                <select class="form-select" id="roomFeature" name="roomFeature">
+                    <option value="Active">Active</option>
+                    <option value="Disabled">Disable</option>
+                </select>
+            </div>
+
             <button type="submit" name='add_room' class="btn btn-primary">Add Room</button>
         </form>
     </div>
@@ -84,6 +92,7 @@ if(isset($_POST['add_room']))
     $room_price = $_POST['roomPrice'];
     $room_details = $_POST['roomDetails'];
     $room_category = $_POST['roomCategory'];
+    $room_feature = $_POST['roomFeature'];
 
     //upload the image if selected
     if(isset($_FILES['roomImage']['name']))
@@ -142,7 +151,7 @@ if(isset($_POST['add_room']))
     }
 
      //insert data to database
-     $sql = "INSERT INTO tbl_room SET name = '$room_name' , admin_id = $admin_id,   details = '$room_details' , price = $room_price , category = '$room_category' , image = '$image_name'  ";
+     $sql = "INSERT INTO tbl_room SET name = '$room_name' , admin_id = $admin_id,   details = '$room_details' , price = $room_price , category = '$room_category' , image = '$image_name' , feature = '$room_feature'  ";
 
      //execute the query
      $result = mysqli_query($conn,$sql);

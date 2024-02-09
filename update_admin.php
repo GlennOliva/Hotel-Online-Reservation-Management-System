@@ -37,8 +37,6 @@ if($result == True)
 
         $full_name = $row['full_name'];
         $email = $row['email'];
-        $address = $row['address'];
-        $age = $row['age'];
         $status = $row['status'];
 
       
@@ -69,14 +67,7 @@ if($result == True)
                 <label for="adminEmail" class="form-label">Admin Email New</label>
                 <input type="email" class="form-control" id="adminEmail" name="adminEmail" value='<?php echo $email;?>'>
             </div>
-            <div class="mb-3">
-                <label for="adminAge" class="form-label">Admin Age New</label>
-                <input type="number" class="form-control" id="adminAge" name="adminAge" value="<?php echo $age;?>">
-            </div>
-            <div class="mb-3">
-    <label for="adminAddress" class="form-label">Admin Address New</label>
-    <textarea class="form-control" id="adminAddress" name="adminAddress" rows="3"><?php echo $address;?></textarea>
-</div>
+         
 
 <div class="mb-3">
     <label for="adminStatus" class="form-label">Admin Status</label>
@@ -101,12 +92,11 @@ if(isset($_POST['update_admin']))
     $id = $_POST['id'];
     $full_name = $_POST['adminFullName'];
     $email = $_POST['adminEmail'];
-    $age = $_POST['adminAge'];
-    $address = $_POST['adminAddress'];
+
     $status = $_POST['adminStatus'];
 
     //create sql query update
-    $sql = "UPDATE tbl_admin SET full_name = '$full_name' , email = '$email' , age = '$age', address = '$address' , status = '$status'  WHERE id = '$id'";
+    $sql = "UPDATE tbl_admin SET full_name = '$full_name' , email = '$email' , status = '$status'  WHERE id = '$id'";
 
     //execute the query
     $result = mysqli_query($conn,$sql);

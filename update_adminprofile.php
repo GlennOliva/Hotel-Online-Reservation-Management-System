@@ -57,8 +57,7 @@ if($result == True)
 
         $full_name = $row['full_name'];
         $email = $row['email'];
-        $address = $row['address'];
-        $age = $row['age'];
+
         $status = $row['status'];
 
       
@@ -89,30 +88,29 @@ if($result == True)
                 <label for="adminEmail" class="form-label">Admin Email</label>
                 <input type="email" class="form-control" id="adminEmail" name="adminEmail" value='<?php echo $email;?>'>
             </div>
-            <div class="mb-3">
-                <label for="adminAge" class="form-label">Admin Age</label>
-                <input type="number" class="form-control" id="adminAge" name="adminAge" value="<?php echo $age;?>">
-            </div>
-            <div class="mb-3">
-    <label for="adminAddress" class="form-label">Admin Address</label>
-    <textarea class="form-control" id="adminAddress" name="adminAddress" rows="3"><?php echo $address;?></textarea>
-
+ 
     <div class="mb-3">
                 <label for="adminAge" class="form-label">Admin Current Password</label>
-                <input type="password" class="form-control" id="adminAge" name="current_password">
+                <input type="password" class="form-control" id="password" name="current_password">
             </div>
+
+
 
 
             <div class="mb-3">
                 <label for="adminAge" class="form-label">Admin New Password</label>
-                <input type="password" class="form-control" id="adminAge" name="new_password" >
+                <input type="password" class="form-control" id="password" name="new_password" >
             </div>
+
+        
 
 
             <div class="mb-3">
                 <label for="adminAge" class="form-label">Admin Confirm Password</label>
-                <input type="password" class="form-control" id="adminAge" name="confirm_password" >
+                <input type="password" class="form-control" id="password" name="confirm_password" >
             </div>
+
+        
 </div>
 
 
@@ -126,14 +124,33 @@ if($result == True)
 </div>
 
 
+<script>
+        function validatePassword() {
+            var passwordInput = document.getElementById("password");
+            var passwordError = document.getElementById("password-error");
+            var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+            if (!passwordPattern.test(passwordInput.value)) {
+                passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+                passwordError.style.display = "block";
+                return false; // Password pattern is invalid
+            } else {
+                passwordError.style.display = "none";
+                return true; // Password pattern is valid
+            }
+        }
+
+        // Add event listener to the password input field to trigger validation
+        document.getElementById("password").addEventListener("keyup", validatePassword);
+    </script>
+
+
 <?php
 if(isset($_POST['update_admin']))
 {
 
     $full_name = $_POST['adminFullName'];
     $email = $_POST['adminEmail'];
-    $age = $_POST['adminAge'];
-    $address = $_POST['adminAddress'];
     $status = $_POST['adminStatus'];
     $current_passowrd = $_POST['current_password'];
     $new_password = $_POST['new_password'];
@@ -155,7 +172,7 @@ if(isset($_POST['update_admin']))
                     if($new_password==$confirm_password)
                     {
                         //create sql query update
-    $sql = "UPDATE tbl_admin SET full_name = '$full_name' , email = '$email' , age = '$age', address = '$address' , password = '$new_password'   WHERE id = '$admin_id'";
+    $sql = "UPDATE tbl_admin SET full_name = '$full_name' , email = '$email' ,  password = '$new_password'   WHERE id = '$admin_id'";
 
     //execute the query
     $result = mysqli_query($conn,$sql);

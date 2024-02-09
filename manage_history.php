@@ -23,9 +23,11 @@
                 <th scope="col">Room Name</th>
                 <th scope="col">Room Price</th>
                 <th scope="col">Room Total_Price</th>
+                <th scope="col">Payment Method</th>
                 <th scope="col">Check In</th>
                 <th scope="col">Check Out</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
@@ -49,20 +51,26 @@
             $room_name = $row['room_name'];
             $total_price = $row['total_price'];
             $status = $row['status'];
+            $payment_method = $row['payment_method'];
             $created_at = $row['created_at'];
 
             // Display each row in the table
             echo "<tr>
-                    <td>$ids</td>
-                    <td>$user_id</td>
-                    <td>$address</td>
-                    <td>$room_name</td>
-                    <td>$room_price</td>
-                    <td>$total_price</td>
-                    <td>$check_in</td>
-                    <td>$check_out</td>
-                    <td>$status</td>
-                </tr>";
+    <td>$ids</td>
+    <td>$user_id</td>
+    <td>$address</td>
+    <td>$room_name</td>
+    <td>$room_price</td>
+    <td>$total_price</td>
+    <td>$payment_method</td>
+    <td>$check_in</td>
+    <td>$check_out</td>
+    <td>$status</td>
+    <td>
+        <a href='update_book.php?id=$id' class='btn btn-primary'>Edit</a>
+    </td>
+</tr>";
+
 
             // Increment $ids for the next iteration
             $ids++;

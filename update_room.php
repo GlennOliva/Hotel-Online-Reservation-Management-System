@@ -82,6 +82,14 @@
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="roomFeature" class="form-label">Room Feature</label>
+                <select class="form-select" id="roomFeature" name="roomFeature">
+                    <option value="Active">Active</option>
+                    <option value="Disabled">Disable</option>
+                </select>
+            </div>
+
             <input type="hidden" name="id" value="<?php echo $id;?>">
       <input type="hidden" name="current_image" value="<?php echo $current_image;?>">
             <button type="submit" name='update_room' class="btn btn-primary">Update Room</button>
@@ -103,6 +111,7 @@
        $price = $_POST['roomPrice'];
        $current_image = $_POST['current_image'];
        $category = $_POST['roomCategory'];
+       $feature = $_POST['roomFeature'];
 
        //uploadt the image if selected
        
@@ -184,7 +193,7 @@ $image_name = "Hotel-Room-" . rand(0000, 9999) . '.' . $ext;
 
 
        //update the food in database
-       $sql2 = "UPDATE tbl_room SET name = '$room_name' , details = '$details' , price = $price , image = '$image_name' , category = '$category' WHERE id = $id";
+       $sql2 = "UPDATE tbl_room SET name = '$room_name' , details = '$details' , price = $price , image = '$image_name' , category = '$category' , feature = '$feature'  WHERE id = $id";
 
        //execute the sql query
        $result2 = mysqli_query($conn,$sql2);

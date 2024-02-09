@@ -96,6 +96,51 @@ include('frontend-components/header.php');
         padding: 0; /* Remove horizontal padding on mobile */
     }
 }
+
+.reviews-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.reviews-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.review-item {
+    margin-bottom: 20px;
+}
+
+.review-item p {
+    margin: 5px 0;
+    font-size:16px;
+}
+
+.review-item hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.reviews-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
+    justify-content: space-between; /* Distribute flex items evenly along the main axis */
+}
+
+.review-box {
+    width: calc(50% - 20px); /* Set width to 50% of the container minus margin */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+
+
+
 </style>
 
 
@@ -121,6 +166,8 @@ include('frontend-components/header.php');
                     <a href="room_book.php?id=<?php echo $rid;?>" class="btn">Book Now</a>
                 </div>
                 </form>
+
+                
                 <?php
             }
         } else {
@@ -128,6 +175,35 @@ include('frontend-components/header.php');
         }
         ?>
     </div>
+    <div class="reviews-container">
+    <h2>Customer Reviews</h2>
+    <?php
+    // Assuming you have a table named tbl_review with fields for rating, feedback, and user_id
+    $sql_reviews = "SELECT r.rating, r.feedback, u.full_name 
+                    FROM tbl_review AS r 
+                    INNER JOIN tbl_user AS u ON r.user_id = u.id 
+                    WHERE r.room_id = $rid";
+    $res_reviews = mysqli_query($conn, $sql_reviews);
+
+    if ($res_reviews->num_rows > 0) {
+        while ($review = mysqli_fetch_assoc($res_reviews)) {
+            // Display each review
+            echo "<div class='review-box'>";
+            echo "<p style='font-size: 16px;'><strong>Rating:</strong> " . $review['rating'] . "</p>";
+            echo "<p style='font-size: 16px;'><strong>Feedback:</strong> " . $review['feedback'] . "</p>";
+            echo "<p style='font-size: 16px;'><strong>Customer Name:</strong> " . $review['full_name'] . "</p>";
+            echo "<hr>";
+            echo "</div>";
+            
+        }
+    } else {
+        echo "No reviews yet"; // You may want to handle the case where no reviews are found
+    }
+    ?>
+    <!-- You can also add a form here for customers to leave reviews -->
+    <!-- The form should submit to a PHP script to handle the review submission -->
+</div>
+
 </section>
 
 

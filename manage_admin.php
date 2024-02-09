@@ -49,8 +49,6 @@ if(!isset($_SESSION['admin_id']))
     <th scope="col">Admin ID</th>
     <th scope="col">Admin Full_Name</th>
     <th scope="col">Admin Email</th>
-    <th scope="col">Admin Age</th>
-    <th scope="col">Admin Address</th>
     <th scope="col">Status</th>
     <th scope="col">Actions</th>
     <!-- Add more table headers as needed -->
@@ -63,7 +61,7 @@ if(!isset($_SESSION['admin_id']))
 
      {
          $admin_id = $_SESSION['admin_id'];
-        $sql = "SELECT * FROM tbl_admin WHERE id =  $admin_id";
+        $sql = "SELECT * FROM tbl_admin";
 
         $result = mysqli_query($conn, $sql);
 
@@ -77,16 +75,14 @@ if(!isset($_SESSION['admin_id']))
                     $id = $rows['id'];
                     $full_name = $rows['full_name'];
                     $email = $rows['email'];
-                    $age = $rows['age'];
-                    $address = $rows['address'];
+
                     $status = $rows['status'];
                     ?>
                     <tr>
                         <td><?php echo $ids++; ?></td>
                         <td><?php echo $full_name; ?></td>
                         <td><?php echo $email; ?></td>
-                        <td><?php echo $age; ?></td>
-                        <td><?php echo $address;?></td>
+
                         <td><?php echo $status; ?></td>
                         <td>
                             <a href="update_admin.php?id=<?php echo $id; ?>" class="btn btn-primary">Edit</a>

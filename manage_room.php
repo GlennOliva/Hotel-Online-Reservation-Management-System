@@ -50,6 +50,7 @@ if(!isset($_SESSION['admin_id']))
                 <th scope="col">Room Image</th>
                 <th scope="col">Room Details</th>
                 <th scope="col">Room Category</th>
+                <th scope="col">Room Feature</th>
                 <th scope="col">Actions</th>
                 <!-- Add more table headers as needed -->
             </tr>
@@ -78,6 +79,7 @@ if(!isset($_SESSION['admin_id']))
                     $room_details = $rows['details'];
                     $room_category = $rows['category'];
                     $image = $rows['image'];
+                    $feature = $rows['feature'];
                     ?>
 
 
@@ -88,6 +90,7 @@ if(!isset($_SESSION['admin_id']))
                 <td><img src="images/room/<?php echo $image;?>" alt="" style='width: 70px;'></td>
                 <td><?php echo $room_details?></td>
                 <td><?php echo $room_category;?></td>
+                <td><?php echo $feature;?></td>
                 <td>
                 <a href="update_room.php?id=<?php echo $id;?>" class="btn btn-primary">Edit</a>
                 <form action="code.php" method="POST">

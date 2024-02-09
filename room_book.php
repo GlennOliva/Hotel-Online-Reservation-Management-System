@@ -108,6 +108,57 @@ include('frontend-components/header.php');
 }
 
 
+.terms-and-conditions {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.terms-and-conditions h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.terms-and-conditions p {
+    margin-bottom: 10px;
+}
+
+.terms-and-conditions ul {
+    margin-bottom: 10px;
+}
+
+.terms-and-conditions li {
+    margin-bottom: 5px;
+}
+
+.accept-decline {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accept-decline input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.accept-decline label {
+    font-size: 14px;
+    display: inline-block;
+    padding:12px;
+    margin-bottom: 1%;
+}
+
+.accept-decline label span {
+    font-weight: bold;
+    color: #333;
+}
+
+
+
 </style>
 
 <?php
@@ -183,6 +234,70 @@ if (isset($_SESSION['user_id'])) {
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" value="<?php echo $address;?>" required>
 
+                    <label for="children">Number of Children:</label>
+                    <input type="number" id="children" name="children" onchange="checkAvailabilityAndCalculateTotalPrice()" min="0"  required>
+
+                    <label for="adults">Number of Adults:</label>
+                    <input type="number" id="adults" name="adults" onchange="checkAvailabilityAndCalculateTotalPrice()" min="0"  required>
+
+
+                    <div class="terms-and-conditions">
+        <h3 style='text-align: center;'>Terms & Policies</h3>
+        <p><strong>Check-in and Check-out:</strong></p>
+        <ul>
+            <li>Please note that the check-in time is 2pm and the check-out time is 11am the next day. You can early check-in in case if there is an available unit but we will charge 100 per hour.</li>
+            <li>No extension of stay to give way to our housekeeping to clean and sanitize the room before the next guest checks in.</li>
+            <li>Upon check-in, please expect that our authorized staff will collect 1,000 pesos for a security deposit. Upon check-out you must return the key in the Unit 10i, our staff will check the unit before we refund your security deposit to ensure that our rooms are in good condition before you leave the condo.</li>
+        </ul>
+
+        <p><strong>Booking Cancellation:</strong></p>
+        <ul>
+            <li>We can refund 100% of your payment if you cancel the booking 5 days before your arrival.</li>
+            <li>Please be informed that you can get a refund of your payment in 2–3 business days.</li>
+            <li>Before you book please make sure that you are comfortable with FFBS cancellation policy.</li>
+        </ul>
+
+        <p><strong>Using of Common Areas:</strong></p>
+        <ul>
+            <li>Please be informed that this policy is being implemented by the management of The Sentinel Residences. All guests must comply.</li>
+            <li>Disobeying the house rules of the building will be subject to a violation charge by the security personnel.</li>
+            <li>No pets allowed</li>
+            <li>No smoking</li>
+            <li>No loitering</li>
+            <li>Proper disposal of garbage in the second-floor garbage room area.</li>
+            <li>No loud music</li>
+            <li>No parties</li>
+            <li>No eating in any common areas (especially in the Swimming pool area)</li>
+            <li>No illegal parking you must avail your own parking space in the reception area. The rate is 150 for the first 3 hours, 300 pesos for 24 hours and the succeeding time is 20 pesos per hour.</li>
+            <li>You need to leave a one valid ID in the reception area for security purposes.</li>
+        </ul>
+
+        <p><strong>Security & Privacy:</strong></p>
+        <p>The Fabulous Finds By Sabrina pledges to fully comply with the requirements of Republic Act No. 10173, known as “Data Privacy Act of 2012,” and the internationally recognized standards of data privacy security and protection.</p>
+        <p>The Fabulous Finds By Sabrina stresses the importance of privacy. We are committed to earning and maintaining your trust by adopting high standards for the protection and security of personal information. The Hotel uses personal information to provide our valued guests or any individual or entities with whom the Hotel does business, regardless of the type of reservations and contractual arrangement, a wonderful experience of the unparalleled Service from efficient and courteous hotel personnel, as well as comfort, luxury, and impeccable service in every visit to the Hotel.</p>
+        <p>As part of that undertaking, this Privacy Policy gives effect to our commitment to protect your personal information and serves as guidelines to be observed by The Fabulous Finds By Sabrina.</p>
+        <p>You will be asked to consent to the terms of this Privacy Policy when making a reservation, registering for events or promotions, sending inquiries, or otherwise corresponding with us via the website or other platforms under applicable law. Subject to the requirements of applicable law, your continued use of the FFBS Online-Reservation website will constitute your consent to the terms of this Privacy Policy.</p>
+        <p>It is also our policy to respect and uphold data privacy rights, and ensure that all personal information collected from you are processed pursuant to the general principles of transparency, legitimate purpose, and proportionality as expressly stated in the Data Privacy Act of 2012.</p>
+        <p>As the Hotel’s valued guests or any individual or entities with whom the Hotel does business, regardless of the type of reservations and contractual arrangement, it is expected that you understand, agree, and consent that the Hotel collects, uses, and discloses personal data or information in accordance with the laws.</p>
+
+        <p><strong>Other Reminders:</strong></p>
+        <ul>
+            <li>Please observe cleanliness inside the unit. (CLEAN AS YOU GO).</li>
+            <li>STRICTLY no extra guests; our rooms can only occupy 2 people.</li>
+            <li>Respect our staffs and other Building Personnel.</li>
+        </ul>
+
+        <div class="accept-decline">
+        <input type="checkbox" id="accept" name="accept" required>
+        <label for="accept">I accept the terms and conditions</label>
+        <br>
+        <input type="checkbox" id="decline" name="decline">
+        <label for="decline">I decline the terms and conditions</label>
+    </div>
+    </div>
+
+
+
                     <div id="paypal-button-container"></div>
 
                     <input type="hidden" name="room_id" id="room_id" value="<?php echo $rid;?>">
@@ -203,10 +318,12 @@ if (isset($_SESSION['user_id'])) {
     </div>
 </section>
 
+
+
 <script src="https://www.paypal.com/sdk/js?client-id=AXc3pZdSHDKAKBZt33EqU6d5Zu2sgux-JQOrU48YNuznMdhEcVthc1pwOLfSXUzbRkDD1T4eWfJygeR1&currency=PHP"></script>
 
 <script>
-      function checkAvailabilityAndCalculateTotalPrice() {
+     function checkAvailabilityAndCalculateTotalPrice() {
     var checkInDate = new Date(document.getElementById('check_in').value);
     var checkOutDate = new Date(document.getElementById('check_out').value);
 
@@ -215,7 +332,20 @@ if (isset($_SESSION['user_id'])) {
 
     var roomPrice = parseFloat(document.getElementById('room_price').value);
 
+    var numberOfChildren = parseInt(document.getElementById('children').value);
+    var numberOfAdults = parseInt(document.getElementById('adults').value);
+
     var totalPrice = diffDays * roomPrice;
+
+    // Check if the total number of guests exceeds 2
+    var totalGuests = numberOfChildren + numberOfAdults;
+    if (totalGuests > 2) {
+        // Calculate additional fee for each person beyond 2
+        var additionalGuests = totalGuests - 2;
+        var additionalFeePerPerson = 500;
+        var additionalFee = additionalGuests * additionalFeePerPerson;
+        totalPrice += additionalFee;
+    }
 
     document.getElementById('room_totalprice').value = totalPrice.toFixed(2);
 
@@ -248,6 +378,7 @@ if (isset($_SESSION['user_id'])) {
 
     xhr.send();
 }
+
 
     function checkRoomAvailability(checkInDate, checkOutDate, bookedDates) {
       for (var i = 0; i < bookedDates.length; i++) {
@@ -300,6 +431,8 @@ if (isset($_SESSION['user_id'])) {
                         address: document.getElementById('address').value,
                         room_id: document.getElementById('room_id').value,
                         user_id: document.getElementById('user_id').value,
+                        children: document.getElementById('children').value,
+                        adults: document.getElementById('adults').value,
                         payment_details: details // Pass the payment details to the server
                     };
 
@@ -331,6 +464,9 @@ if (isset($_SESSION['user_id'])) {
         }).render('#paypal-button-container');
     }
 }
+
+
+
 
 </script>
 

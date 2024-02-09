@@ -13,14 +13,14 @@ include('frontend-components/header.php');
 
          <div class="swiper-wrapper">
 
-            <div class="swiper-slide slide" style="background: url(images/home-slide1.jpg) no-repeat;">
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7663.jpg) no-repeat;">
                <div class="content">
                  <h3>Discover the luxury of seamless online reservations at our exquisite hotel. With just a few clicks, you can ensure a delightful and stress-free stay with us.</h3>
                   <a href="#" class="btn">Book Now</a>
                </div>
             </div>
 
-            <div class="swiper-slide slide" style="background: url(images/home-slide3.jpg) no-repeat;">
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7666.jpg) no-repeat;">
                <div class="content">
                   <h3>Experience Unforgettable Stays with Hassle-Free Online Reservations</h3>
 
@@ -38,6 +38,87 @@ include('frontend-components/header.php');
             <div class="swiper-slide slide" style="background: url(images/Rm215.JPG) no-repeat;">
                <div class="content">
                   <h3>Experience Unforgettable Stays with Hassle-Free Online Reservations. </h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7667.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Discover the essence of luxury and comfort with our exclusive hotel accommodations.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7669.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Indulge in unparalleled hospitality and make memories that last a lifetime at our hotel.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7672.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Escape to a world of tranquility and sophistication with our premier hotel offerings.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7673.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Embark on a journey of relaxation and adventure amidst the elegance of our hotel.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7677.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Immerse yourself in the charm of our boutique hotel, where every detail reflects elegance.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7678.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Revel in the perfect blend of modern amenities and timeless elegance at our hotel.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7693.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Experience the epitome of opulence and personalized service at our renowned hotel.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7698.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Unwind in style and luxury as you explore the vibrant surroundings of our hotel.</h3>
+
+                  <a href="#" class="btn">Book Now</a>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide" style="background: url(images/banner/IMG_7681.jpg) no-repeat;">
+               <div class="content">
+                  <h3>Step into a realm of refined luxury and unmatched hospitality at our esteemed hotel.</h3>
 
                   <a href="#" class="btn">Book Now</a>
                </div>
@@ -97,7 +178,7 @@ include('frontend-components/header.php');
     <div class="swiper-wrapper">
 
         <?php
-        $sql = "SELECT * FROM tbl_room";
+        $sql = "SELECT * FROM tbl_room WHERE feature = 'Active'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -161,57 +242,49 @@ include('frontend-components/header.php');
          <div class="swiper-wrapper">
 
             <div class="swiper-slide slide">
-               <img src="images/Pool.JPG" alt="">
+               <img src="images/gallery/IMG_7664.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/Resto.JPG" alt="">
+               <img src="images/gallery/IMG_7670.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/Jogging area.JPG" alt="">
+               <img src="images/gallery/IMG_7671.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/Gym.JPG" alt="">
+               <img src="images/gallery/IMG_7674.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/IMG_6881.JPG" alt="">
+               <img src="images/gallery/IMG_7676.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery6.jpg" alt="">
+               <img src="images/gallery/IMG_7678.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery1.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery2.jpg" alt="">
+               <img src="images/gallery/IMG_7682.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
@@ -219,7 +292,7 @@ include('frontend-components/header.php');
 
 
             <div class="swiper-slide slide">
-               <img src="images/gallery3.jpg" alt="">
+               <img src="images/gallery/IMG_7683.png" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
@@ -227,7 +300,7 @@ include('frontend-components/header.php');
 
 
             <div class="swiper-slide slide">
-               <img src="images/gallery4.jpg" alt="">
+               <img src="images/gallery/IMG_7686.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
@@ -235,7 +308,44 @@ include('frontend-components/header.php');
 
 
             <div class="swiper-slide slide">
-               <img src="images/gallery5.jpg" alt="">
+               <img src="images/gallery/IMG_7687.jpg" alt="">
+               <div class="icon">
+                  <i class="fas fa-magnifying-glass-plus"></i>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide">
+               <img src="images/gallery/IMG_7688.jpg" alt="">
+               <div class="icon">
+                  <i class="fas fa-magnifying-glass-plus"></i>
+               </div>
+            </div>
+
+            <div class="swiper-slide slide">
+               <img src="images/gallery/IMG_7696.jpg" alt="">
+               <div class="icon">
+                  <i class="fas fa-magnifying-glass-plus"></i>
+               </div>
+            </div>
+
+
+            <div class="swiper-slide slide">
+               <img src="images/gallery/IMG_7697.jpg" alt="">
+               <div class="icon">
+                  <i class="fas fa-magnifying-glass-plus"></i>
+               </div>
+            </div>
+
+            <div class="swiper-slide slide">
+               <img src="images/gallery/IMG_7704.jpg" alt="">
+               <div class="icon">
+                  <i class="fas fa-magnifying-glass-plus"></i>
+               </div>
+            </div>
+
+            <div class="swiper-slide slide">
+               <img src="images/gallery/IMG_7711.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>

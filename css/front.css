@@ -131,28 +131,41 @@ section{
     padding: 0;
 }
 
-.home .slide{
+.home .slide {
     min-height: 100vh;
     background-size: cover !important;
     background-position: center !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: -1;
+    position: relative; /* Ensure that the pseudo-element is positioned relative to this container */
 }
 
-.home .slide .content{
+.home .slide::before {
+    content: ''; /* Required for the pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here (0 is fully transparent, 1 is fully opaque) */
+    z-index: 1; /* Place the pseudo-element above other content */
+}
+
+.home .slide .content {
     width: 80rem;
     text-align: center;
+    z-index: 2; /* Ensure that the content is above the pseudo-element */
 }
 
-.home .slide .content h3{
+.home .slide .content h3 {
     font-size: 4rem;
     text-transform: uppercase;
     color: var(--white);
     line-height: 1.1;
     padding: 2rem 0;
 }
+
 
 .swiper-button-next,
 .swiper-button-prev{

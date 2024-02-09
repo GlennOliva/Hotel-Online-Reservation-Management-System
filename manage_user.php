@@ -32,7 +32,7 @@ if(!isset($_SESSION['admin_id']))
           <p class="font-weight-bold">Manage User</p>
         </div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" id='admin_table'>
         <thead>
             <tr class="table-dark">
                 <th scope="col">User ID</th>
@@ -41,6 +41,7 @@ if(!isset($_SESSION['admin_id']))
                 <th scope="col">User Phone_Number</th>
                 <th scope="col">User Address</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>
@@ -73,6 +74,12 @@ if(!isset($_SESSION['admin_id']))
                 <td><?php echo $phone;?></td>
                 <td><?php echo $address;?></td>
                 <td><?php echo $status;?></td>
+                <td>
+                <form action="code.php" method="post">
+                                    <button type="button"  class="btn btn-danger delete_userbtn" value="<?= $id;?>"> Delete</button>
+                                    </form>
+                </td>
+
                 <!-- Add more table data as needed -->
             </tr>
             <!-- Add more rows as needed -->

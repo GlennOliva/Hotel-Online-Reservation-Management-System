@@ -138,13 +138,22 @@ if (isset($_SESSION['user_id'])) {
                     <input type="email" id="room_price" name="email" value="<?php echo $email;?>" required>
 
                     <label for="price">Phone #:</label>
-                    <input type="text" id="room_totalprice" name="phone" value="<?php echo $phone;?>" required>
+                    <input type="text" id="room_totalprice" name="phone" value="<?php echo $phone;?>" required maxlength="12">
                 </div>
 
                 <div class="form-column">
 
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" value="<?php echo $address;?>" required>
+
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example28">Password</label>
+                        <input type="password" id="password" class="form-control form-control-lg" name="password"/>
+                    </div>
+
+                    <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters and include big letters and special characters</div>
+
 
                     <input type="hidden" value="<?php echo $id;?>" name="id">    
                     <button type="submit" name="update_profile" class="btn">Update Profile</button>
@@ -155,6 +164,26 @@ if (isset($_SESSION['user_id'])) {
     </div>
 </section>
 
+<script>
+function validatePassword() {
+    var passwordInput = document.getElementById("password");
+    var passwordError = document.getElementById("password-error");
+    var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!passwordPattern.test(passwordInput.value)) {
+        passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        passwordError.style.display = "block";
+        return false; // Password pattern is invalid
+    } else {
+        passwordError.style.display = "none";
+        return true; // Password pattern is valid
+    }
+}
+
+// Add event listener to the password input field to trigger validation
+document.getElementById("password").addEventListener("keyup", validatePassword);
+</script>
+
 
 <?php
 if(isset($_POST['update_profile']))
@@ -164,9 +193,10 @@ if(isset($_POST['update_profile']))
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
+    $password = $_POST['password'];
 
 
-    $sql = "UPDATE tbl_user SET full_name = '$full_name' , email = '$email' , phone = '$phone' , address = '$address' WHERE id = $id";
+    $sql = "UPDATE tbl_user SET full_name = '$full_name' , email = '$email' , phone = '$phone' , address = '$address' , password = '$password' WHERE id = $id";
 
     $res = mysqli_query($conn,$sql);
 
