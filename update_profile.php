@@ -138,7 +138,7 @@ if (isset($_SESSION['user_id'])) {
                     <input type="email" id="room_price" name="email" value="<?php echo $email;?>" required>
 
                     <label for="price">Phone #:</label>
-                    <input type="text" id="room_totalprice" name="phone" value="<?php echo $phone;?>" required maxlength="12">
+                    <input type="text" id="room_totalprice" name="phone" value="<?php echo $phone;?>" required maxlength="11">
                 </div>
 
                 <div class="form-column">

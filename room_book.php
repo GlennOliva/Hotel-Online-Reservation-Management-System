@@ -465,6 +465,21 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
+document.getElementById('decline').addEventListener('change', function() {
+    var declineCheckbox = document.getElementById('decline');
+    var paypalButtonContainer = document.getElementById('paypal-button-container');
+
+    if (declineCheckbox.checked) {
+        // If the "Decline" checkbox is checked, hide the PayPal button
+        paypalButtonContainer.style.display = 'none';
+    } else {
+        // If the "Decline" checkbox is unchecked, show the PayPal button
+        paypalButtonContainer.style.display = 'block';
+    }
+});
+
+
+
 
 
 

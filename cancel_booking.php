@@ -7,17 +7,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['booking_id'])) {
         $bookingId = $_POST['booking_id'];
 
-        // Update the booking status to 'cancel' in the database
-        $updateSql = "UPDATE tbl_book SET status = 'cancel' WHERE id = $bookingId";
+        // Check if the booking status is not already 'cancel' or 'Cancel Approved'
+        $checkSql = "SELECT status FROM tbl_book WHERE id = $bookingId";
+        $checkResult = mysqli_query($conn, $checkSql);
 
-        // Assuming you are using mysqli for database operations
-        $updateResult = mysqli_query($conn, $updateSql);
+        if ($checkResult) {
+            $row = mysqli_fetch_assoc($checkResult);
+            $currentStatus = $row['status'];
 
-        if ($updateResult) {
-            // The cancellation was successful
-            echo 'success';
+            if ($currentStatus !== 'For approval to admin to cancel your book' && $currentStatus !== 'Cancel Approved') {
+                // Update the booking status to 'For approval to admin to cancel your book' in the database
+                $updateSql = "UPDATE tbl_book SET status = 'For approval to admin to cancel your book' WHERE id = $bookingId";
+                $updateResult = mysqli_query($conn, $updateSql);
+
+                if ($updateResult) {
+                    // The cancellation was successful
+                    echo 'success';
+                } else {
+                    // The cancellation failed
+                    echo 'error';
+                }
+            } elseif ($currentStatus === 'Cancel Approved') {
+                // The booking is already cancelled and approved
+                echo 'already_cancelled_approved';
+            } else {
+                // The booking is already in the process of cancellation
+                echo 'already_cancellation_process';
+            }
         } else {
-            // The cancellation failed
+            // Error in checking the current status
             echo 'error';
         }
     } else {

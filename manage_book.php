@@ -55,10 +55,11 @@ if (isset($_SESSION['user_id'])) {
             <td><?php echo$total_price?></td>
             <td><?php echo$status?></td>
             <td><?php echo$created_at?></td>
-            <td>
-                <button class='cancel-button' style="background-color: red; color: white; padding: 12px;" data-booking-id='$id'>Cancel Book</button>
-                <a class='cancel-button' style="background-color: yellow; color: black; padding: 12px;" href="customer_review.php?id=<?php echo $room_id; ?>">Room Review</a>
-            </td>
+            <td style="width: 20%;">
+    <button class='cancel-button' style="background-color: red; color: white; padding: 10px;" data-booking-id='<?php echo $id;?>'>Cancel Book</button>
+    <a class='room-review-link' style="background-color: yellow; color: black; padding: 8px;" href="customer_review.php?id=<?php echo $room_id; ?>">Room Review</a>
+</td>
+
         </tr>
 
         <?php
@@ -86,6 +87,9 @@ if (isset($_SESSION['user_id'])) {
             var bookingId = $(this).data('booking-id');
             var button = $(this); // Capture the reference to the button
 
+            // Disable the button to prevent multiple clicks
+            button.prop('disabled', true);
+
             // AJAX request to update booking status to 'cancel'
             $.ajax({
                 url: 'cancel_booking.php', // Replace with your PHP script to handle the cancellation
@@ -110,14 +114,24 @@ if (isset($_SESSION['user_id'])) {
 
                         // Update the status column in the row
                         button.closest('tr').find('.status-column').text('cancel');
-                    } else {
-                        // Handle error if cancellation fails
+                    } else if (response.trim() === 'already_cancelled_approved') {
+                        // Handle error if cancellation is already approved
                         swal({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Cancellation failed. Please try again later.'
+                            icon: 'warning',
+                            title: 'Cancellation already approved',
+                            text: 'Your booking has already been cancelled and approved.'
+                        });
+                    } else {
+                        // Handle other errors
+                        swal({
+                            icon: 'warning',
+                            title: 'Cancellation process is ongoing',
+                            text: 'Please wait for admin approval to cancel your booking.'
                         });
                     }
+
+                    // Re-enable the button on error
+                    button.prop('disabled', false);
                 },
                 error: function (xhr, status, error) {
                     console.error('AJAX Error:', status, error); // Log AJAX errors for debugging
@@ -128,6 +142,9 @@ if (isset($_SESSION['user_id'])) {
                         title: 'Oops...',
                         text: 'An error occurred during the cancellation request. Please try again later.'
                     });
+
+                    // Re-enable the button on error
+                    button.prop('disabled', false);
                 }
             });
         });

@@ -66,6 +66,7 @@ if($result == True)
         <option value="Pending" <?php echo ($status == 'Pending') ? 'selected' : ''; ?>>Pending</option>
         <option value="Declined" <?php echo ($status == 'Declined') ? 'selected' : ''; ?>>Declined</option>
         <option value="Approved" <?php echo ($status == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+        <option value="Cancel Approved" <?php echo ($status == 'Cancel Approved') ? 'selected' : ''; ?>>Cancel Approved</option>
     </select>
 </div>
           

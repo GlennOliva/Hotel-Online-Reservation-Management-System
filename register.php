@@ -29,7 +29,7 @@ include('connection/dbcon.php');
 
                     <div class="form-outline mb-2">
     <label class="form-label" for="form2Example18">Phone #:</label>
-    <input type="tel" id="form2Example18" class="form-control form-control-lg" name="phone" maxlength="12" />
+    <input type="tel" id="form2Example18" class="form-control form-control-lg" name="phone" maxlength="11" />
 </div>
 
 
@@ -108,11 +108,11 @@ if(isset($_POST['register']))
   }
 
   // Check if the phone number has at least 12 digits
-  if(strlen($phone) < 12) {
+  if(strlen($phone) < 11) {
     echo '<script>
       swal({
         title: "Error",
-        text: "Phone number must have at least 12 digits.",
+        text: "Phone number must have at least 11 digits.",
         icon: "error"
       });
     </script>';
