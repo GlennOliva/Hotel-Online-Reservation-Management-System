@@ -93,7 +93,7 @@ if (isset($_SESSION['user_id'])) {
 
    <header class="header">
 
-      <a href="#" class="logo"> <i class="fas fa-hotel"></i>Fabulous Finds By Sabrina </a>
+      <a href="#" class="logo"> <i class="fas fa-hotel"></i>FABULOUS FINDS BY SABRINA </a>
 
       <nav class="navbar">
          <a href="#home">home</a>

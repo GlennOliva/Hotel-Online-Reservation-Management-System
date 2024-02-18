@@ -19,11 +19,12 @@
     <div class="centered-date-filter mb-2" style='width: 18%; margin: 0 auto;'>
     <form method="post" action="">
         <div style="display: flex; justify-content: space-between;">
-            <input type="date" class="form-control" style='margin-right: 5%;' name="filter_date">
+            <input type="month" class="form-control" style='margin-right: 5%;' name="filter_month">
             <button type="submit" class="btn btn-success">Filter</button>
         </div>
     </form>
 </div>
+
 
 
 
@@ -60,16 +61,22 @@
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the selected date
-    $filter_date = $_POST['filter_date'];
+    // Retrieve the selected month
+    $filter_month = $_POST['filter_month'];
 
-    // Perform the SQL query with date filtering
-    $sql = "SELECT * FROM tbl_book WHERE DATE(created_at) = '$filter_date' AND status = 'Booked'";
+    // Extract year and month from the selected month
+    $year_month = explode('-', $filter_month);
+    $year = $year_month[0];
+    $month = $year_month[1];
+
+    // Perform the SQL query with month filtering
+    $sql = "SELECT * FROM tbl_book WHERE YEAR(created_at) = '$year' AND MONTH(created_at) = '$month' AND status = 'Booked'";
     $res = mysqli_query($conn, $sql);
 
     // Display the filtered results
     $count = mysqli_num_rows($res);
     $ids = 1;
+    $total_sales = 0;
 
     if ($count > 0) {
         while ($row = mysqli_fetch_assoc($res)) {
@@ -82,6 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $payment = $row['payment_method'];
             $status = $row['status'];
             $created_at = $row['created_at'];
+
+            // Calculate total sales
+            $total_sales += $total_price;
+
             ?>
             <tr>
                 <td><?php echo $ids++;?></td>
@@ -96,11 +107,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
         }
     } else {
-        // No records found for the selected date
-        echo '<tr><td colspan="8">No sales report available for the selected date.</td></tr>';
+        // No records found for the selected month
+        echo '<tr><td colspan="8">No sales report available for the selected month.</td></tr>';
     }
+
+    // Display total sales for the month
+    echo '<tr><td colspan="6"><strong>Total Sales for the Month:</strong></td><td colspan="2"><strong>₱ ' . number_format($total_sales, 2) . '</strong></td></tr>';
+
 }
 ?>
+
                     <!-- Add more table data as needed -->
                 </tr>
                 <!-- Add more rows as needed -->

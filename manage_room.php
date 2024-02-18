@@ -62,7 +62,7 @@ if(!isset($_SESSION['admin_id']))
 
         {
             $admin_id = $_SESSION['admin_id'];
-        $sql = "SELECT * FROM tbl_room WHERE admin_id = $admin_id";
+        $sql = "SELECT * FROM tbl_room";
 
         $result = mysqli_query($conn, $sql);
 

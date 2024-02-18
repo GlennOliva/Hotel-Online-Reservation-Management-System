@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 :root{
-    --primary:#0077b6;
-    --secondary:#48cae4;
+    --primary:#416D19;
+    --secondary:#9BCF53;
     --black:#333;
     --white:#fff;
     --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
@@ -403,7 +403,7 @@ section{
 /* review */
 
 .review{
-    background-image: url("../images/review.jpg");
+    background-image: url("../images//room/Hotel-Room-9472.JPG");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

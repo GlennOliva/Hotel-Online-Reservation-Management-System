@@ -235,121 +235,69 @@ include('frontend-components/header.php');
 
    <section class="gallery" id="gallery">
 
-      <h1 class="heading">our gallery</h1>
+      <h1 class="heading">AMENITIES</h1>
 
       <div class="swiper gallery-slider">
 
          <div class="swiper-wrapper">
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7664.jpg" alt="">
+               <img src="images/gallery/Gym.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7670.jpg" alt="">
+               <img src="images/gallery/pool.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7671.jpg" alt="">
+               <img src="images/gallery/trail.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7674.jpg" alt="">
+               <img src="images/gallery/pool2.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7676.jpg" alt="">
+               <img src="images/gallery/Gym.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7678.jpg" alt="">
+               <img src="images/gallery/pool.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7682.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7683.png" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7686.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7687.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7688.jpg" alt="">
+               <img src="images/gallery/trail.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7696.jpg" alt="">
+               <img src="images/gallery/pool2.jpg" alt="">
                <div class="icon">
                   <i class="fas fa-magnifying-glass-plus"></i>
                </div>
             </div>
 
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7697.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7704.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/gallery/IMG_7711.jpg" alt="">
-               <div class="icon">
-                  <i class="fas fa-magnifying-glass-plus"></i>
-               </div>
-            </div>
+           
          </div>
 
       </div>
@@ -442,10 +390,12 @@ include('frontend-components/header.php');
    
       <div class="row">
    
-         <div class="image">
-            <img src="images/FAQs.gif" alt="Frequently Asked Questions">
-         </div>
    
+      <!-- <div class="image">
+            
+            </div> -->
+
+
          <div class="content">
    
             <div class="box active">
