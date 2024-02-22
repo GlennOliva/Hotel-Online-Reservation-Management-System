@@ -1,8 +1,8 @@
 <?php
 include('connection/dbcon.php');
-
+$roomId = $_GET['room_id'];
 // Fetch booked dates from tbl_book
-$sql = "SELECT check_in, check_out FROM tbl_book";
+$sql = "SELECT check_in, check_out FROM tbl_book WHERE room_id = $roomId";
 $result = $conn->query($sql);
 
 $bookedDates = array();

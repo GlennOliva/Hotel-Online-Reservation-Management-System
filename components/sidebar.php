@@ -76,6 +76,12 @@
       </li>
 
       <li class="sidebar-list-item">
+        <a href="manage_chat.php" >
+          <span class="material-icons-outlined">message</span> Manage Chat
+        </a>
+      </li>
+
+      <li class="sidebar-list-item">
         <a href="update_adminprofile.php" >
           <span class="material-icons-outlined">manage_accounts</span> Update Profile
         </a>

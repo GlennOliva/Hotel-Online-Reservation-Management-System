@@ -74,6 +74,8 @@ include('frontend-components/header.php');
     border-radius: 4px;
 }
 
+
+
 .context button:hover {
     background-color: #0056b3;
 }
@@ -207,10 +209,10 @@ if (isset($_SESSION['user_id'])) {
 
                 <div class="form-column">
                 <label for="check_in">Check-in Date:</label>
-  <input type="date" id="check_in" name="check_in" onchange="checkAvailabilityAndCalculateTotalPrice()" required>
+  <input type="date" id="check_in" name="check_in" onchange="checkAvailabilityAndCalculateTotalPrice('<?php echo $rid; ?>')" required>
 
   <label for="check_out">Check-out Date:</label>
-  <input type="date" id="check_out" name="check_out" onchange="checkAvailabilityAndCalculateTotalPrice()" required>
+  <input type="date" id="check_out" name="check_out" onchange="checkAvailabilityAndCalculateTotalPrice('<?php echo $rid; ?>')" required>
 
   <div id="availabilityMessage"></div>
 
@@ -324,6 +326,7 @@ if (isset($_SESSION['user_id'])) {
 
 <script>
      function checkAvailabilityAndCalculateTotalPrice() {
+        var roomId = document.getElementById('room_id').value;
     var checkInDate = new Date(document.getElementById('check_in').value);
     var checkOutDate = new Date(document.getElementById('check_out').value);
 
@@ -351,7 +354,7 @@ if (isset($_SESSION['user_id'])) {
 
     // Fetch booked dates from the server using AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'getBookedDates.php', true);
+    xhr.open('GET', 'getBookedDates.php?room_id=' + roomId, true); // Pass room ID as a parameter
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function () {
@@ -373,11 +376,61 @@ if (isset($_SESSION['user_id'])) {
                 // Disable PayPal button or hide it
                 updatePayPalButton(totalPrice.toFixed(2), true);
             }
+            // Highlight date inputs based on availability
+            highlightUnavailableDates(bookedDates);
         }
     };
 
     xhr.send();
 }
+
+// Function to highlight unavailable dates
+function highlightUnavailableDates(bookedDates) {
+    var checkInInput = document.getElementById('check_in');
+    var checkOutInput = document.getElementById('check_out');
+
+    var checkInDate = new Date(checkInInput.value);
+    var checkOutDate = new Date(checkOutInput.value);
+
+    var today = new Date();
+
+    while (checkInDate < checkOutDate) {
+        var formattedDate = formatDate(checkInDate);
+        if (isDateBooked(formattedDate, bookedDates) || checkInDate < today) {
+            // Disable the date input
+            checkInInput.querySelector('option[value="' + formattedDate + '"]').disabled = true;
+            checkOutInput.querySelector('option[value="' + formattedDate + '"]').disabled = true;
+        }
+        // Move to the next day
+        checkInDate.setDate(checkInDate.getDate() + 1);
+    }
+}
+
+// Helper function to format dates in YYYY-MM-DD format
+function formatDate(date) {
+    var month = '' + (date.getMonth() + 1);
+    var day = '' + date.getDate();
+    var year = date.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+// Helper function to check if a date is booked
+function isDateBooked(date, bookedDates) {
+    for (var i = 0; i < bookedDates.length; i++) {
+        var bookedStartDate = bookedDates[i]['check_in'];
+        var bookedEndDate = bookedDates[i]['check_out'];
+        if (date >= bookedStartDate && date <= bookedEndDate) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 
     function checkRoomAvailability(checkInDate, checkOutDate, bookedDates) {
@@ -420,6 +473,18 @@ if (isset($_SESSION['user_id'])) {
                     // Log success message to console
                     console.log('Payment successful! Details:', details);
 
+                  
+                    var paymentMethod;
+        if (details.payer.email_address === 'sb-qzwoq28652236@business.example.com') {
+            paymentMethod = 'Paid by PayPal';
+        } else {
+            paymentMethod = 'Paid by Debit/Card';
+        }
+
+
+
+
+
                     // Add the data you want to send to the server
                     var postData = {
                         check_in: document.getElementById('check_in').value,
@@ -433,6 +498,7 @@ if (isset($_SESSION['user_id'])) {
                         user_id: document.getElementById('user_id').value,
                         children: document.getElementById('children').value,
                         adults: document.getElementById('adults').value,
+                        payment_method:  paymentMethod,
                         payment_details: details // Pass the payment details to the server
                     };
 

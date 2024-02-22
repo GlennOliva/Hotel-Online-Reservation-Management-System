@@ -21,7 +21,7 @@ session_start();
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+   
    <link rel="stylesheet" href="css/front.css">
    <link rel="icon" href="images/logo.jpg" type="image/x-icon">
 

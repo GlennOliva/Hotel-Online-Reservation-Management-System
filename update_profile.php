@@ -128,7 +128,7 @@ if (isset($_SESSION['user_id'])) {
 
         <div class="context">
             <h2>User Profile</h2>
-            <form action="" method="post" class="booking-form">
+            <form action="" method="post" class="booking-form" onsubmit="return validateForm()">
 
                 <div class="form-column">
                     <label for="room_name">Full Name:</label>
@@ -178,6 +178,13 @@ function validatePassword() {
         passwordError.style.display = "none";
         return true; // Password pattern is valid
     }
+}
+
+function validateForm() {
+    if (!validatePassword()) {
+        return false; // Prevent form submission if password is invalid
+    }
+    return true; // Allow form submission if all validations pass
 }
 
 // Add event listener to the password input field to trigger validation

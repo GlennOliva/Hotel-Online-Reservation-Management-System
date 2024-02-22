@@ -15,7 +15,7 @@ include('components/sidebar.php');
 
     <div class="card">
         <div class="card-body">
-            <form action="" method="post">
+            <form action="" method="post" onsubmit="return validateForm()">
                 <div class="mb-3">
                     <label for="adminFullname" class="form-label">Admin Full_Name</label>
                     <input type="text" class="form-control" id="adminFullName" name="adminFullName">
@@ -40,24 +40,31 @@ include('components/sidebar.php');
     </div>
 
     <script>
-        function validatePassword() {
-            var passwordInput = document.getElementById("password");
-            var passwordError = document.getElementById("password-error");
-            var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+function validatePassword() {
+    var passwordInput = document.getElementById("password");
+    var passwordError = document.getElementById("password-error");
+    var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
-            if (!passwordPattern.test(passwordInput.value)) {
-                passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
-                passwordError.style.display = "block";
-                return false; // Password pattern is invalid
-            } else {
-                passwordError.style.display = "none";
-                return true; // Password pattern is valid
-            }
-        }
+    if (!passwordPattern.test(passwordInput.value)) {
+        passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        passwordError.style.display = "block";
+        return false; // Password pattern is invalid
+    } else {
+        passwordError.style.display = "none";
+        return true; // Password pattern is valid
+    }
+}
 
-        // Add event listener to the password input field to trigger validation
-        document.getElementById("password").addEventListener("keyup", validatePassword);
-    </script>
+function validateForm() {
+    if (!validatePassword()) {
+        return false; // Prevent form submission if password is invalid
+    }
+    return true; // Allow form submission if all validations pass
+}
+
+// Add event listener to the password input field to trigger validation
+document.getElementById("password").addEventListener("keyup", validatePassword);
+</script>
     <?php
     if (isset($_POST['add_admin'])) {
         // Count the number of existing admins

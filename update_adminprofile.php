@@ -79,7 +79,7 @@ if($result == True)
 
     <div class="card">
     <div class="card-body">
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return validateForm()">
             <div class="mb-3">
                 <label for="adminFullname" class="form-label">Admin Full_Name </label>
                 <input type="text" class="form-control" id="adminFullName" name="adminFullName" value="<?php echo $full_name;?>">
@@ -89,26 +89,24 @@ if($result == True)
                 <input type="email" class="form-control" id="adminEmail" name="adminEmail" value='<?php echo $email;?>'>
             </div>
  
-    <div class="mb-3">
-                <label for="adminAge" class="form-label">Admin Current Password</label>
-                <input type="password" class="form-control" id="password" name="current_password">
-            </div>
-
-
-
-
             <div class="mb-3">
-                <label for="adminAge" class="form-label">Admin New Password</label>
-                <input type="password" class="form-control" id="password" name="new_password" >
-            </div>
+    <label for="adminCurrentPassword" class="form-label">Admin Current Password</label>
+    <input type="password" class="form-control" id="current_password" name="current_password">
+    <div id="current-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+</div>
 
-        
+<div class="mb-3">
+    <label for="adminNewPassword" class="form-label">Admin New Password</label>
+    <input type="password" class="form-control" id="new_password" name="new_password">
+    <div id="new-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+</div>
 
+<div class="mb-3">
+    <label for="adminConfirmPassword" class="form-label">Admin Confirm Password</label>
+    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+    <div id="confirm-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+</div>
 
-            <div class="mb-3">
-                <label for="adminAge" class="form-label">Admin Confirm Password</label>
-                <input type="password" class="form-control" id="password" name="confirm_password" >
-            </div>
 
         
 </div>
@@ -125,24 +123,53 @@ if($result == True)
 
 
 <script>
-        function validatePassword() {
-            var passwordInput = document.getElementById("password");
-            var passwordError = document.getElementById("password-error");
-            var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+function validatePassword() {
+    var currentPassword = document.getElementById("current_password").value;
+    var newPassword = document.getElementById("new_password").value;
+    var confirmPassword = document.getElementById("confirm_password").value;
+    var currentPasswordError = document.getElementById("current-password-error");
+    var newPasswordError = document.getElementById("new-password-error");
+    var confirmPasswordError = document.getElementById("confirm-password-error");
+    var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
-            if (!passwordPattern.test(passwordInput.value)) {
-                passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
-                passwordError.style.display = "block";
-                return false; // Password pattern is invalid
-            } else {
-                passwordError.style.display = "none";
-                return true; // Password pattern is valid
-            }
-        }
+    // Reset error messages
+    currentPasswordError.style.display = "none";
+    newPasswordError.style.display = "none";
+    confirmPasswordError.style.display = "none";
 
-        // Add event listener to the password input field to trigger validation
-        document.getElementById("password").addEventListener("keyup", validatePassword);
-    </script>
+    // Check if the new password matches the pattern
+    if (!passwordPattern.test(newPassword)) {
+        newPasswordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        newPasswordError.style.display = "block";
+        return false;
+    }
+
+    // Check if the new password and confirm password match
+    if (newPassword !== confirmPassword) {
+        confirmPasswordError.textContent = "New password and confirm password must match";
+        confirmPasswordError.style.display = "block";
+        return false;
+    }
+
+    // Check if the new password is different from the current password
+    if (currentPassword === newPassword) {
+        newPasswordError.textContent = "New password must be different from the current password";
+        newPasswordError.style.display = "block";
+        return false;
+    }
+
+    // Passwords are valid
+    return true;
+}
+
+function validateForm() {
+    return validatePassword();
+}
+
+// Add event listener to the new password input fields to trigger validation
+document.getElementById("new_password").addEventListener("keyup", validatePassword);
+document.getElementById("confirm_password").addEventListener("keyup", validatePassword);
+</script>
 
 
 <?php
