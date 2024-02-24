@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $month = $year_month[1];
 
     // Perform the SQL query with month filtering
-    $sql = "SELECT * FROM tbl_book WHERE YEAR(created_at) = '$year' AND MONTH(created_at) = '$month' AND status = 'Booked'";
+    $sql = "SELECT * FROM tbl_book WHERE YEAR(created_at) = '$year' AND MONTH(created_at) = '$month' AND status = 'Approved'";
     $res = mysqli_query($conn, $sql);
 
     // Display the filtered results

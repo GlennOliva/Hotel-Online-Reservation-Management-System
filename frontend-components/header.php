@@ -107,6 +107,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="dropdown-content">
                 <a href="manage_book.php">My Bookings</a>
                 <a href="update_profile.php">Profile</a>
+                <a href="chat.php">Chat</a>
                 <a href="logout.php">Logout</a>
             </div>
         </div>

@@ -1,18 +1,16 @@
 <?php
-    include('components/header.php');
+    include('frontend-components/header.php');
     include('connection/dbcon.php');
     include('components/chat-header.php');
 
 ?>
 
 
-<?php
-        include('components/sidebar.php');
-      ?>
+
 
 
 <?php
-if(!isset($_SESSION['admin_id']))
+if(!isset($_SESSION['user_id']))
 
 {
     echo '<script>
@@ -21,7 +19,7 @@ if(!isset($_SESSION['admin_id']))
                                         text: "You must login first before you proceed!",
                                         icon: "error"
                                     }).then(function() {
-                                        window.location = "admin_login.php";
+                                        window.location = "login.php";
                                     });
                                 </script>';
                                 exit;
@@ -32,7 +30,7 @@ if(!isset($_SESSION['admin_id']))
 
 
 
-<main class="main-container">
+<main class="main-container" style='margin: 8%;'>
         <div class="main-title">
           <p class="font-weight-bold">Manage Chats</p>
         </div>
@@ -55,15 +53,15 @@ if(!isset($_SESSION['admin_id']))
         if (isset($_POST['search_user'])) {
             $search_query = $_POST['search_user'];
             // SQL query to search for users based on full name
-            $sql = "SELECT * FROM tbl_user WHERE full_name LIKE '%$search_query%'";
+            $sql = "SELECT * FROM tbl_admin WHERE full_name LIKE '%$search_query%'";
             $res = mysqli_query($conn, $sql);
             // Check if there are search results
             if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)) {
-                    $user_id = $row['id'];
+                    $admin_id = $row['id'];
                     $name = $row['full_name'];
                     ?>
-                    <li class="active" data-user-id="<?php echo $user_id; ?>">
+                    <li class="active" data-user-id="<?php echo $admin_id; ?>">
                         <div class="d-flex bd-highlight">
                             <div class="user_info contact_name">
                                 <span><?php echo $name; ?></span>
@@ -75,19 +73,19 @@ if(!isset($_SESSION['admin_id']))
                 }
             } else {
                 // Display a message if no search results found
-                echo "<li>No users found.</li>";
+                echo "<li>No admin found.</li>";
             }
         } else {
             // If search query is not set, display all users
-            $sql = "SELECT * FROM tbl_user";
+            $sql = "SELECT * FROM tbl_admin";
             $res = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($res)) {
-                $user_id = $row['id'];
+                $admin_id = $row['id'];
                 $name = $row['full_name'];
                 ?>
                 <li class="active">
                     <div class="d-flex bd-highlight">
-                        <div class="user_info contact_name" data-user-id="<?php echo $user_id; ?>">
+                        <div class="user_info contact_name" data-user-id="<?php echo $admin_id; ?>">
                             <span><?php echo $name; ?></span>
                             <p>Online</p>
                         </div>
@@ -124,7 +122,8 @@ if(!isset($_SESSION['admin_id']))
 						</div>
 						<div class="card-body msg_card_body">
 					
-						<?php 
+
+                        <?php 
 $display_message_admin = "SELECT * FROM tbl_message WHERE user_id = $user_id";
 $message_result_admin = mysqli_query($conn, $display_message_admin);
 
@@ -157,7 +156,7 @@ usort($messages, function($a, $b) {
 
 // Display messages in reverse order
 foreach ($messages as $message) {
-    if ($message['sender'] == 'admin') {
+    if ($message['sender'] == 'user') {
         ?>
         <div class="d-flex justify-content-end mb-4">
             <div class="msg_cotainer_send">
@@ -189,7 +188,6 @@ if (empty($messages)) {
 
 
 
-
 								
 								
 						
@@ -212,9 +210,9 @@ if (empty($messages)) {
 							</div>
 							</form>
 							<?php
-							if(isset($_SESSION['admin_id']))
+							if(isset($_SESSION['user_id']))
 							{
-								$admin_id = $_SESSION['admin_id'];
+								$admin_id = $_SESSION['user_id'];
 							if(isset($_POST['send']))
 							{
 								$message = $_POST['chat'];
@@ -222,7 +220,7 @@ if (empty($messages)) {
 								$admin_id = $_POST['admin_id'];
 								
 
-								$insert_message = "INSERT INTO tbl_message SET user_id = '$user_id', admin_id = '$admin_id', message = '$message' , created_at = NOW() ";
+								$insert_message = "INSERT INTO tbl_message_user SET user_id = '$user_id', admin_id = '$admin_id', message = '$message' , created_at = NOW() ";
 								$result = mysqli_query($conn,$insert_message);
 
 								if($result==true)
@@ -233,7 +231,7 @@ if (empty($messages)) {
                                         text: "Sucessful send message",
                                         icon: "success"
                                     }).then(function() {
-                                        window.location = "manage_chat.php";
+                                        window.location = "chat.php";
                                     });
                                 </script>';
                                 exit;
@@ -246,7 +244,7 @@ if (empty($messages)) {
                                         text: "Failed send message",
                                         icon: "error"
                                     }).then(function() {
-                                        window.location = "manage_chat.php";
+                                        window.location = "chat.php";
                                     });
                                 </script>';
                                 exit;
@@ -316,6 +314,4 @@ if (empty($messages)) {
 
 
 
-      <?php
-        include('components/footer.php');
-      ?>
+   
