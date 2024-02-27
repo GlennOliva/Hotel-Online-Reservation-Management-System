@@ -30,9 +30,7 @@ include('components/sidebar.php');
                     <input type="password" class="form-control" id="password" name="adminPassword">
                 </div>
 
-                <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be
-                    between 4 and 8 characters
-                </div>
+                <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 
                 <button type="submit" name='add_admin' class="btn btn-primary">Add Admin</button>
             </form>
@@ -46,7 +44,7 @@ function validatePassword() {
     var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
     if (!passwordPattern.test(passwordInput.value)) {
-        passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        passwordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
         passwordError.style.display = "block";
         return false; // Password pattern is invalid
     } else {

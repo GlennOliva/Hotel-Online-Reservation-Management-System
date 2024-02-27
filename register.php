@@ -80,7 +80,7 @@ include('connection/dbcon.php');
             var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
             if (!passwordPattern.test(passwordInput.value)) {
-                passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+                passwordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
                 passwordError.style.display = "block";
                 return false; // Password pattern is invalid
             } else {
@@ -121,7 +121,7 @@ function validatePassword() {
     var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
     if (!passwordPattern.test(passwordInput.value)) {
-        passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        passwordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
         passwordError.style.display = "block";
         return false; // Password pattern is invalid
     } else {

@@ -92,19 +92,19 @@ if($result == True)
             <div class="mb-3">
     <label for="adminCurrentPassword" class="form-label">Admin Current Password</label>
     <input type="password" class="form-control" id="current_password" name="current_password">
-    <div id="current-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+    <div id="current-password-error" style="color: red; display: none;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 </div>
 
 <div class="mb-3">
     <label for="adminNewPassword" class="form-label">Admin New Password</label>
     <input type="password" class="form-control" id="new_password" name="new_password">
-    <div id="new-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+    <div id="new-password-error" style="color: red; display: none;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 </div>
 
 <div class="mb-3">
     <label for="adminConfirmPassword" class="form-label">Admin Confirm Password</label>
     <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-    <div id="confirm-password-error" style="color: red; display: none;">Password must be at least 8 characters and include big letters and special characters</div>
+    <div id="confirm-password-error" style="color: red; display: none;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 </div>
 
 
@@ -139,7 +139,7 @@ function validatePassword() {
 
     // Check if the new password matches the pattern
     if (!passwordPattern.test(newPassword)) {
-        newPasswordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        newPasswordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
         newPasswordError.style.display = "block";
         return false;
     }

@@ -36,7 +36,7 @@ session_start();
         <i class="material-icons-sharp" id="password-icon">visibility</i>
     </span>
 </div>
-<div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters</div>
+<div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 
             <input type="submit" name="login-submit" value="Login" class="submit-button">
         </form>
@@ -67,7 +67,7 @@ session_start();
 
     if (passwordInput.value.length < 4 || passwordInput.value.length > 25) {
         if (passwordInput.value.length < 8) {
-            passwordError.textContent = "Password must be at least 4 characters to 8 characters";
+            passwordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
         } 
         passwordError.style.display = "block";
         return false; // Password length is invalid

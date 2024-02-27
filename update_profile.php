@@ -152,7 +152,7 @@ if (isset($_SESSION['user_id'])) {
                         <input type="password" id="password" class="form-control form-control-lg" name="password"/>
                     </div>
 
-                    <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be between 4 and 8 characters and include big letters and special characters</div>
+                    <div id="password-error" style="color: red; display: none; margin-bottom: 3%;">Password must be at least 8 characters with special characters and at least 1 capital letter</div>
 
 
                     <input type="hidden" value="<?php echo $id;?>" name="id">    
@@ -171,7 +171,7 @@ function validatePassword() {
     var passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
     if (!passwordPattern.test(passwordInput.value)) {
-        passwordError.textContent = "Password must be at least 8 characters and include big letters and special characters";
+        passwordError.textContent = "Password must be at least 8 characters with special characters and at least 1 capital letter";
         passwordError.style.display = "block";
         return false; // Password pattern is invalid
     } else {

@@ -32,7 +32,6 @@ if(!isset($_SESSION['user_id']))
 
 <main class="main-container" style='margin: 8%;'>
         <div class="main-title">
-          <p class="font-weight-bold">Manage Chats</p>
         </div>
 
         <body>
